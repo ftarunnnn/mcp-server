@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-developer-mcp"
+version = "1.0.0"
+description = "Production-grade AI Developer Model Context Protocol (MCP) Server"
+readme = "README.md"
+authors = [
+    { name = "Tarun", email = "arunism3@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+    "httpx>=0.25.0",
+    "uvicorn>=0.24.0",
+    "click>=8.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0"
+]
+
+[project.scripts]
+ai-developer-mcp = "ai_developer_mcp.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
