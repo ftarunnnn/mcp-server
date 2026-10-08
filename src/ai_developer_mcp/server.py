@@ -8,6 +8,7 @@ from typing import Any
 from mcp.server.fastmcp import FastMCP
 from ai_developer_mcp.config import config
 import ai_developer_mcp.tools as dev_tools
+import ai_developer_mcp.resources as dev_resources
 
 # Configure logging
 logging.basicConfig(
@@ -86,3 +87,29 @@ def git_operations(action: str, target: str = "") -> dict[str, Any]:
     Execute safe git queries (status, log, diff, branch).
     """
     return dev_tools.git_operations(action=action, target=target)
+
+
+# --- Register Resources ---
+
+@mcp.resource("project://files/{path}")
+def project_file_resource(path: str) -> str:
+    """
+    Dynamic resource accessing project workspace file content.
+    """
+    return dev_resources.get_project_file(path)
+
+
+@mcp.resource("docs://architecture")
+def architecture_docs_resource() -> str:
+    """
+    Static resource exposing system architecture documentation.
+    """
+    return dev_resources.get_architecture_docs()
+
+
+@mcp.resource("config://server-status")
+def server_status_resource() -> str:
+    """
+    Static resource exposing MCP server runtime configuration and health status.
+    """
+    return dev_resources.get_server_config_status()
