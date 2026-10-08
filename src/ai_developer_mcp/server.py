@@ -9,6 +9,7 @@ from mcp.server.fastmcp import FastMCP
 from ai_developer_mcp.config import config
 import ai_developer_mcp.tools as dev_tools
 import ai_developer_mcp.resources as dev_resources
+import ai_developer_mcp.prompts as dev_prompts
 
 # Configure logging
 logging.basicConfig(
@@ -113,3 +114,29 @@ def server_status_resource() -> str:
     Static resource exposing MCP server runtime configuration and health status.
     """
     return dev_resources.get_server_config_status()
+
+
+# --- Register Prompts ---
+
+@mcp.prompt()
+def code_review(code_snippet: str, language: str = "python", strictness: str = "normal") -> str:
+    """
+    Reusable prompt workflow for automated code review.
+    """
+    return dev_prompts.prompt_code_review(code_snippet=code_snippet, language=language, strictness=strictness)
+
+
+@mcp.prompt()
+def debugging(error_message: str, stack_trace: str, code_context: str = "") -> str:
+    """
+    Reusable prompt workflow for root-cause error debugging.
+    """
+    return dev_prompts.prompt_debugging(error_message=error_message, stack_trace=stack_trace, code_context=code_context)
+
+
+@mcp.prompt()
+def architecture_review(system_description: str, tech_stack: str = "") -> str:
+    """
+    Reusable prompt workflow for software architecture evaluation.
+    """
+    return dev_prompts.prompt_architecture_review(system_description=system_description, tech_stack=tech_stack)
