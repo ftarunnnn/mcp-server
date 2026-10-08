@@ -23,8 +23,7 @@ logger = logging.getLogger("ai_developer_mcp")
 # Initialize FastMCP Server
 mcp = FastMCP(
     name=config.server_name,
-    version=config.server_version,
-    description="Enterprise AI Developer Model Context Protocol (MCP) Server"
+    instructions="Enterprise AI Developer Model Context Protocol (MCP) Server"
 )
 
 # --- Register Tools ---
