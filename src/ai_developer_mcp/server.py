@@ -10,6 +10,7 @@ from ai_developer_mcp.config import config
 import ai_developer_mcp.tools as dev_tools
 import ai_developer_mcp.resources as dev_resources
 import ai_developer_mcp.prompts as dev_prompts
+import ai_developer_mcp.services as dev_services
 
 # Configure logging
 logging.basicConfig(
@@ -88,6 +89,22 @@ def git_operations(action: str, target: str = "") -> dict[str, Any]:
     Execute safe git queries (status, log, diff, branch).
     """
     return dev_tools.git_operations(action=action, target=target)
+
+
+@mcp.tool()
+async def github_get_repo_info(owner: str, repo: str) -> dict[str, Any]:
+    """
+    Fetch live repository metadata and stargazers count from GitHub REST API.
+    """
+    return await dev_services.github_get_repo_info(owner=owner, repo=repo)
+
+
+@mcp.tool()
+async def github_search_issues(query: str, owner: str = "", repo: str = "") -> dict[str, Any]:
+    """
+    Search GitHub issues and pull requests for given topic/query.
+    """
+    return await dev_services.github_search_issues(query=query, owner=owner, repo=repo)
 
 
 # --- Register Resources ---
