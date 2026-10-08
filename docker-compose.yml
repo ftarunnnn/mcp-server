@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  ai-developer-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai_developer_mcp_server
+    ports:
+      - "8000:8000"
+    environment:
+      - MCP_LOG_LEVEL=INFO
+      - MCP_PORT=8000
+    volumes:
+      - .:/app
+    restart: unless-stopped

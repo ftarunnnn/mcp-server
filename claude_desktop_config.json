@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "ai-developer": {
+      "command": "python",
+      "args": [
+        "-m",
+        "ai_developer_mcp.main",
+        "--transport",
+        "stdio"
+      ],
+      "env": {
+        "MCP_WORKSPACE_DIR": "C:\\Users\\aruni\\Desktop\\New folder",
+        "MCP_LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}
